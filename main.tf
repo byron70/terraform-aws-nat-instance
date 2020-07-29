@@ -167,10 +167,11 @@ resource "aws_autoscaling_group" "this" {
 
 resource "aws_iam_instance_profile" "this" {
   name_prefix = var.name
-  role        = aws_iam_role.this.name
+  role        = local.iam_role_name
 }
 
 resource "aws_iam_role" "this" {
+  count = var.iam_role_name != "" ? 0 : 1
   name_prefix        = var.name
   assume_role_policy = <<EOF
 {
@@ -190,11 +191,11 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "ssm" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-  role       = aws_iam_role.this.name
+  role       = local.iam_role_name
 }
 
 resource "aws_iam_role_policy" "eni" {
-  role        = aws_iam_role.this.name
+  role        = local.iam_role_name
   name_prefix = var.name
   policy      = <<EOF
 {

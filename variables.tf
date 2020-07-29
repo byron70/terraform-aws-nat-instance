@@ -30,6 +30,12 @@ variable "private_route_table_ids" {
   default     = []
 }
 
+variable "iam_role_name" {
+  description = "IAM role to use for the instance profile instead of creating a new role and policy"
+  type = string
+  default = ""
+}
+
 variable "image_id" {
   description = "AMI of the NAT instance. Default to the latest Amazon Linux 2"
   type        = string
@@ -78,4 +84,6 @@ locals {
     var.tags, {
       Name = "nat-instance-${var.name}"
   })
+
+  iam_role_name = var.iam_role_name != "" ? var.iam_role_name : aws_iam_role.this.name
 }
