@@ -85,5 +85,5 @@ locals {
       Name = "nat-instance-${var.name}"
   })
 
-  iam_role_name = var.iam_role_name != "" ? var.iam_role_name : aws_iam_role.this.name
+  iam_role_name = var.iam_role_name != "" ? var.iam_role_name : aws_iam_role.this.name[0]
 }
