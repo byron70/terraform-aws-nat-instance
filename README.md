@@ -143,6 +143,7 @@ No requirements.
 | image\_id | AMI of the NAT instance. Default to the latest Amazon Linux 2 | `string` | `""` | no |
 | instance\_types | Candidates of spot instance type for the NAT instance. This is used in the mixed instances policy | `list` | <pre>[<br>  "t3.nano",<br>  "t3a.nano"<br>]</pre> | no |
 | key\_name | Name of the key pair for the NAT instance. You can set this to assign the key pair to the NAT instance | `string` | `""` | no |
+| iam\_role\_name | Existing IAM role for NAT instance.  | `string` | `""` | no |
 | name | Name for all the resources as identifier | `string` | n/a | yes |
 | private\_route\_table\_ids | List of ID of the route tables for the private subnets. You can set this to assign the each default route to the NAT instance | `list` | `[]` | no |
 | private\_subnets\_cidr\_blocks | List of CIDR blocks of the private subnets. The NAT instance accepts connections from this subnets | `list` | n/a | yes |
