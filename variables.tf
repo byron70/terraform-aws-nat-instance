@@ -85,6 +85,6 @@ locals {
       Name = "nat-instance-${var.name}"
   })
 
-  iam_role_count = len(var.iam_role_name) == 0 ? 1 : 0
+  iam_role_count = length(var.iam_role_name) == 0 ? 1 : 0
   iam_role_name = var.iam_role_name != "" ? var.iam_role_name : aws_iam_role.this[0].name
 }
