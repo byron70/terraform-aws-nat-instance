@@ -171,7 +171,7 @@ resource "aws_iam_instance_profile" "this" {
 }
 
 resource "aws_iam_role" "this" {
-  count = var.iam_role_name != "" ? 0 : 1
+  count = local.iam_role_count
   name_prefix        = var.name
   assume_role_policy = <<EOF
 {
